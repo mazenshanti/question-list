@@ -37,7 +37,7 @@ myApp.config(['$stateProvider',function($stateProvider) {
     { 
       name: 'questionDelete', 
       url: '/questionDelete/{questionId}',
-      component: 'questionDelete',
+      component: 'questionsListView',
       resolve: {
         questions: function(questionsService,$stateParams) {
           return questionsService.deleteQuestion($stateParams.questionId)

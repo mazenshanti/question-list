@@ -1,4 +1,4 @@
-var questionsController = angular.module('questionsController', ['ui.router']);
+var questionsController = angular.module('questionsController', []);
 
 questionsController.controller('questionAdd',function(questionsService,$scope){
   $scope.submit = function(){
@@ -22,7 +22,6 @@ questionsController.controller('questionEdit',function(questionsService,$scope,$
     var questions = questionsService.getAllQuestions();
     var question = questions.find(questionId);
     if(question !== null){
-      console.log(question)
       var temp = {};
       question.questionText = $scope.input[1];
       question.questionType = $scope.input[2];
