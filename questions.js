@@ -1,4 +1,4 @@
-var myApp = angular.module('questions', ['ui.router']);
+var myApp = angular.module('questions', ['ui.router','questionsController']);
 myApp.config(['$stateProvider',function($stateProvider) {
   // An array of state definitions
   var states = [
@@ -37,7 +37,7 @@ myApp.config(['$stateProvider',function($stateProvider) {
     { 
       name: 'questionDelete', 
       url: '/questionDelete/{questionId}',
-      component: 'questionsListView',
+      component: 'questionDelete',
       resolve: {
         questions: function(questionsService,$stateParams) {
           return questionsService.deleteQuestion($stateParams.questionId)
@@ -57,37 +57,12 @@ myApp.config(['$stateProvider',function($stateProvider) {
   });
 }]);
 
-myApp.controller('addQuestion',function(questionsService,$scope){
-  $scope.submit = function(){
-    var questions = questionsService.getAllQuestions();
-    var temp = {};
-    temp.id = $scope.input[0];
-    temp.questionText = $scope.input[1];
-    temp.questionType = $scope.input[2];
-    temp.questionTypeNumber = $scope.input[3];
-    temp.answerType = $scope.input[4];
-    questions.push(temp);
-    questionsService.putAllQuestions(questions);
-  };
-});
+// myApp.run(['$rootScope', '$state', function($rootScope, $state) {
 
-myApp.controller('editQuestion',function(questionsService,$scope,$stateParams){
-  function questionId(question) {
-    return question.id === $stateParams.questionId;
-  }
-  $scope.submit = function(){
-    var questions = questionsService.getAllQuestions();
-    var question = questions.find(questionId);
-    if(question !== null){
-      var temp = {};
-      question.questionText = $scope.input[1];
-      question.questionType = $scope.input[2];
-      question.questionTypeNumber = $scope.input[3];
-      question.answerType = $scope.input[4];
-      var index = questions.findIndex(questionId);
-      questions.splice(index,1);
-      questions.push(question);
-      questionsService.putAllQuestions(questions);
-    }
-  };
-});
+//     $rootScope.$on('$stateChangeStart', function(evt, to, params) {
+//       if (to.redirectTo) {
+//         evt.preventDefault();
+//         $state.go(to.redirectTo, params, {location: 'replace'})
+//       }
+//     });
+// }]);
