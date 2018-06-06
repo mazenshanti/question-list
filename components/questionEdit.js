@@ -1,5 +1,5 @@
 angular.module('questions').component('questionEdit', {
-  bindings: { question: '<' },
+  bindings: { question: '=' },
   templateUrl:  'view/questionEdit.html'
 })
 

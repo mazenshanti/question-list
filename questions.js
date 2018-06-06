@@ -71,19 +71,26 @@ myApp.controller('addQuestion',function(questionsService,$scope){
   };
 });
 
-myApp.controller('editQuestion',function(questionsService,$scope){
+myApp.controller('editQuestion',function(questionsService,$scope,$stateParams){
+  function questionId(question) {
+    return question.id === $stateParams.questionId;
+  }
   $scope.submit = function(){
     var questions = questionsService.getAllQuestions();
-    questions.find(function(question) { 
-      if(question.id === $scope.$ctrl.question.id){
-        question.questionText = $scope.$ctrl.question.questionText;
-        question.questionType = $scope.$ctrl.question.questionType;
-        question.questionTypeNumber = $scope.$ctrl.question.questionTypeNumber;
-        question.answerType = $scope.$ctrl.question.answerType;
-        console.log(question.id);
-      }
-    });
-    console.log(questions);
-    questionsService.putAllQuestions(questions);
+    var question = questions.find(questionId);
+    console.log(question);
+    if(question !== null){
+      var temp = {};
+      temp.id === $scope.input[0];
+      console.log($scope.input[1]);
+      temp.questionText = $scope.input[1];
+      temp.questionType = $scope.input[2];
+      temp.questionTypeNumber = $scope.input[3];
+      temp.answerType = $scope.input[4];
+      var index = questions.findIndex(questionId);
+      questions.splice(index,1);
+      questions.push(temp);
+      questionsService.putAllQuestions(questions);
+    }
   };
 });
