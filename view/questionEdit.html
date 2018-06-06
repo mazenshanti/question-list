@@ -1,0 +1,8 @@
+<div ng-controller="editQuestion">
+	<form aciton="/" id="editQuestion">
+		<div ng-repeat="value in $ctrl.question">
+			<input type="text" ng-model="value">
+		</div>
+		<button type="button" ng-click="submit()">edit</button>
+	</form>
+</div>

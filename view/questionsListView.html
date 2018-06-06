@@ -1,0 +1,9 @@
+<h3>{{$ctrl.questions[0].questionType}}</h3>
+<ul>
+  <li ng-repeat="question in $ctrl.questions">
+  {{question.questionText}} 
+  <a ui-sref="questionEdit({ questionId: question.id })">edit</a>
+  <a ui-sref="questionDelete({ questionId: question.id })">delete</a>
+  </li>
+</ul>
+    
