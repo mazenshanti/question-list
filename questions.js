@@ -78,18 +78,15 @@ myApp.controller('editQuestion',function(questionsService,$scope,$stateParams){
   $scope.submit = function(){
     var questions = questionsService.getAllQuestions();
     var question = questions.find(questionId);
-    console.log(question);
     if(question !== null){
       var temp = {};
-      temp.id === $scope.input[0];
-      console.log($scope.input[1]);
-      temp.questionText = $scope.input[1];
-      temp.questionType = $scope.input[2];
-      temp.questionTypeNumber = $scope.input[3];
-      temp.answerType = $scope.input[4];
+      question.questionText = $scope.input[1];
+      question.questionType = $scope.input[2];
+      question.questionTypeNumber = $scope.input[3];
+      question.answerType = $scope.input[4];
       var index = questions.findIndex(questionId);
       questions.splice(index,1);
-      questions.push(temp);
+      questions.push(question);
       questionsService.putAllQuestions(questions);
     }
   };
