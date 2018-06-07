@@ -1,5 +1,9 @@
 angular.module('questions').component('questionDelete', {
-  bindings: { questions: '<' },
-  redirectTo:  'questionsListView'
+	template:  'Deleted',
+	conroller: 'questionDelete',
+	controllerAs: 'QDelete'
 })
+
+
+
 

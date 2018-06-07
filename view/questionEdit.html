@@ -7,17 +7,17 @@
 	</form>
 </div>
  -->
-<div ng-controller="questionEdit">
-	<form aciton="/" id="questionEdit">
-		<input type="text" ng-model="input[0]">
-		<br>
-		<input type="text" ng-model="input[1]">
-		<br>
-		<input type="text" ng-model="input[2]">
-		<br>
-		<input type="text" ng-model="input[3]">
-		<br>
-		<input type="text" ng-model="input[4]">
-		<button type="button" ng-click="submit()">edit</button>
-	</form>
-</div>
+
+<form aciton="/" id="questionEdit">
+	ID: <input type="text" disabled="disabled" ng-model="QEdit.question.id">
+	<br>
+	Question Text: <input type="text" ng-model="QEdit.question.questionText">
+	<br>
+	Question Type: <input type="text" ng-model="QEdit.question.questionType">
+	<br>
+	Question Type Number: <input type="text" disabled="disabled" ng-model="QEdit.question.questionTypeNumber">
+	<br>
+	Answer Type: <input type="text" ng-model="QEdit.question.answerType">
+	<br>
+	<button type="button" ng-click="submit()">edit</button>
+</form>

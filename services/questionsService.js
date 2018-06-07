@@ -14,7 +14,6 @@ angular.module('questions').service('questionsService', function($http) {
 
     putAllQuestions: function(questions){
       allQuestions = questions;
-      return true;
     },
 
     postQuestions: function(questions) {
@@ -28,6 +27,7 @@ angular.module('questions').service('questionsService', function($http) {
       }
       var index = allQuestions.findIndex(questionId);
       allQuestions.splice(index,1);
+      console.log(allQuestions);
       return allQuestions;
     },
 

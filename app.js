@@ -45,9 +45,9 @@ myApp.config(['$stateProvider',function($stateProvider) {
       }
     },
     { 
-      name: 'addQuestion', 
-      url: '/addQuestion',
-      component: 'addQuestion'
+      name: 'questionAdd', 
+      url: 'questionAdd/questionAdd',
+      component: 'questionAdd'
     },
   ]
   

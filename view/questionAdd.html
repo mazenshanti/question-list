@@ -1,15 +1,14 @@
-<div ng-controller="questionAdd">
-	<form aciton="/" id="questionAdd">
-		<input type="text" ng-model="input[0]">
-		<br>
-		<input type="text" ng-model="input[1]">
-		<br>
-		<input type="text" ng-model="input[2]">
-		<br>
-		<input type="text" ng-model="input[3]">
-		<br>
-		<input type="text" ng-model="input[4]">
-		<button type="button" ng-click="submit()">add</button>
-	</form>
-</div>
-
+{{QAdd.question.id}}
+<form aciton="/" id="questionAdd">
+	ID: <input type="text" ng-model="QAdd.question.id">
+	<br>
+	Question Text: <input type="text" ng-model="QAdd.question.questionText">
+	<br>
+	Question Type: <input type="text" ng-model="QAdd.question.questionType">
+	<br>
+	Question Type Number: <input type="text" ng-model="QAdd.question.questionTypeNumber">
+	<br>
+	Answer Type: <input type="text" ng-model="QAdd.question.answerType">
+	<br>
+	<button type="button" ng-click="submit()">add</button>
+</form>
