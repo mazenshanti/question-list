@@ -8,16 +8,53 @@
 </div>
  -->
 
-<form aciton="/" id="questionEdit">
-	ID: <input type="text" disabled="disabled" ng-model="QEdit.question.id">
-	<br>
-	Question Text: <input type="text" ng-model="QEdit.question.questionText">
-	<br>
-	Question Type: <input type="text" ng-model="QEdit.question.questionType">
-	<br>
-	Question Type Number: <input type="text" disabled="disabled" ng-model="QEdit.question.questionTypeNumber">
-	<br>
-	Answer Type: <input type="text" ng-model="QEdit.question.answerType">
-	<br>
-	<button type="button" ng-click="submit()">edit</button>
-</form>
+<div class="container">
+
+<h2 class="col-md-8 col-md-offset-2 banner editBanner">Edit Question</h2>
+<div class="col-md-8 col-md-offset-2 card editCard">
+
+
+<div class="row marginLeft">
+
+	<form aciton="/" id="questionEdit">
+		<div class="row editLabel marginBottom">Question Text</div> 
+		<textarea type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.questionText"></textarea>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row editLabel marginBottom">Question Type</div> 
+				  <div class="dropdown col-md-12 boarder marginBottom">
+				    <button class="dropbtn">Dropdown 
+				      <i class="fa fa-caret-down"></i>
+				    </button>
+				    <div class="dropdown-content col-md-12">
+				      <a href="#">Link 1</a>
+				      <a href="#">Link 2</a>
+				      <a href="#">Link 3</a>
+				    </div>
+				  </div> 
+				<!-- <textarea type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.questionType"></textarea> -->
+			</div>
+			<div class="col-md-6">
+				<div class="row editLabel marginBottom">Answer Type</div> 
+				  <div class="dropdown col-md-12 boarder marginBottom">
+				    <button class="dropbtn">Dropdown 
+				      <i class="fa fa-caret-down"></i>
+				    </button>
+				    <div class="dropdown-content col-md-12">
+				      <a href="#">Link 1</a>
+				      <a href="#">Link 2</a>
+				      <a href="#">Link 3</a>
+				    </div>
+				  </div> 
+<!-- 				<textarea type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.answerType"></textarea>
+ -->			</div>
+		</div>
+		<div class="row">
+			<button type="button" class="col-md-2 col-md-offset-5 button" ng-click="submit()">save</button>
+		</div>
+	</form>
+</div>
+
+</div>
+</div>
