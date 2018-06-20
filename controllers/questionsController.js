@@ -25,6 +25,12 @@ questionsController.controller('questionDelete',function(questionsService,$state
 });
 
 questionsController.controller('questionEdit',function(questionsService,$scope,$stateParams){
+  $scope.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
+  $scope.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
+  $scope.choice = "false";
+  if($scope.answerTypeOptions == "Multiple Choice - Single Choice"){
+    $scope.choice = "true";
+  }
   var QEdit = this;
   function questionId(question) {
     return question.id === $stateParams.questionId;
@@ -40,10 +46,52 @@ questionsController.controller('questionEdit',function(questionsService,$scope,$
   };
 });
 
-
 // questionsController.controller('questionDelete',function(questionsService,$scope){
 //   $scope.delete = function(){
 //     console.log($scope.questionId);
 //     questionsService.putAllQuestions(questionsService.deleteQuestion($scope.questionId));
 //   };
 // });
+
+
+
+
+questionsController.controller('MainCtrl',function MainCtrl($scope) {
+  $scope.count = 0;
+});
+
+//Directive that returns an element which adds buttons on click which show an alert on click
+questionsController.directive("addbuttonsbutton", function(){
+  return {
+    restrict: "E",
+    template: "<a href='' addbuttons>+ Add Option</a>"
+  }
+});
+
+//Directive for adding buttons on click that show an alert on click
+questionsController.directive("addbuttons", function($compile){
+  return function(scope, element, attrs){
+    element.bind("click", function(){
+      scope.count++;
+      angular.element(document.getElementById('space-for-buttons')).append($compile('<contact-type></contact-type>')(scope));
+    });
+  };
+});
+
+questionsController.directive("contactType", function($compile){
+  return {
+    templateUrl: 'view/removeInput.htm'
+  };
+});
+
+
+questionsController.directive('removeOnClick', function() {
+    return {
+        link: function(scope, elt, attrs) {
+            scope.remove = function() {
+                elt.html('');
+            };
+        }
+    }
+});
+

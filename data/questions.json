@@ -4,7 +4,7 @@
     "questionText": "What is your fav color",
     "questionType": "Behavioral",
     "questionTypeNumber": "0",
-    "answerType": "Multiple Choice \\- Single Choice"
+    "answerType": "Multiple Choice - Single Choice"
   },
   {
     "id": "581",
@@ -30,7 +30,7 @@
   {
     "id": "2321",
     "questionText": "How to be",
-    "questionType": "Welcome \\& Introduction",
+    "questionType": "Welcome & Introduction",
     "questionTypeNumber": "3",
     "answerType": "Free Text"
   }

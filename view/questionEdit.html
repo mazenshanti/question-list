@@ -18,43 +18,42 @@
 
 	<form aciton="/" id="questionEdit">
 		<div class="row editLabel marginBottom">Question Text</div> 
-		<textarea type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.questionText"></textarea>
+		<input type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.questionText">
 
 		<div class="row">
 			<div class="col-md-6">
 				<div class="row editLabel marginBottom">Question Type</div> 
 				  <div class="dropdown col-md-12 boarder marginBottom">
-				    <button class="dropbtn">Dropdown 
-				      <i class="fa fa-caret-down"></i>
-				    </button>
-				    <div class="dropdown-content col-md-12">
-				      <a href="#">Link 1</a>
-				      <a href="#">Link 2</a>
-				      <a href="#">Link 3</a>
-				    </div>
+					<select class="dropdown-content col-md-10" ng-model="QEdit.question.questionType" ng-options="x for x in questionTypeOptions">
+					</select>
+			       <i class="fa fa-caret-down col-md-2"></i>
 				  </div> 
-				<!-- <textarea type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.questionType"></textarea> -->
 			</div>
+
 			<div class="col-md-6">
 				<div class="row editLabel marginBottom">Answer Type</div> 
 				  <div class="dropdown col-md-12 boarder marginBottom">
-				    <button class="dropbtn">Dropdown 
-				      <i class="fa fa-caret-down"></i>
-				    </button>
-				    <div class="dropdown-content col-md-12">
-				      <a href="#">Link 1</a>
-				      <a href="#">Link 2</a>
-				      <a href="#">Link 3</a>
-				    </div>
+					<select class="dropdown-content col-md-10" ng-model="QEdit.question.answerType" ng-options="x for x in answerTypeOptions">
+					</select>
+			       <i class="fa fa-caret-down col-md-2"></i>
 				  </div> 
-<!-- 				<textarea type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.answerType"></textarea>
- -->			</div>
+			</div>
 		</div>
+
+		<div ng-show="QEdit.question.answerType == 'Multiple Choice - Single Choice'">
+			<div class="row editLabel marginBottom">Answers</div> 
+			<contact-type></contact-type>
+			<div ng-app="editQuestion" ng-controller="MainCtrl">
+                <div class="row" id="space-for-buttons"></div>
+                <addbuttonsbutton class="row"></addbuttonsbutton>
+            </div>
+		</div>
+
 		<div class="row">
 			<button type="button" class="col-md-2 col-md-offset-5 button" ng-click="submit()">save</button>
 		</div>
+
 	</form>
 </div>
-
 </div>
 </div>
