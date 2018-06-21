@@ -10,14 +10,14 @@
 	<div class="row marginBottom boarder" >
 		<input type="text" class="search_text col-md-8"  placeholder="Search" ng-model="searchText" />
 		<span class="col-md-2 searchLabel">Question Text</span>
-		<button style="color:grey" class="col-md-2 board fa fa-search"></button>
+		<button style="color:grey" class="col-md-2 boardToLeft fa fa-search"></button>
 	</div>
 	<h4 class="row title">{{$ctrl.questions[0].questionType}}</h4>
 
 	<div class="row marginBottom boarder" ng-repeat="question in $ctrl.questions | filter:searchText">
 	  <input disabled="disabled" class="search_text col-md-10" type="text" value="{{question.questionText}}">
-		  <button ui-sref="questionEdit({ questionId: question.id })" class="col-md-1 board fa fa-pencil-alt"></button>
-		  <button class="col-md-1 board fa fa-times" ui-sref="questionDelete({ questionId: question.id })"></button>
+		  <button ui-sref="questionEdit({ questionId: question.id })" class="col-md-1 boardToLeft fa fa-pencil-alt"></button>
+		  <button class="col-md-1 boardToLeft fa fa-times" ui-sref="questionDelete({ questionId: question.id })"></button>
 	</div>
 </div>
 

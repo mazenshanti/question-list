@@ -1,7 +1,7 @@
 angular.module('questions').component('questionAdd', {
-	bindings: { question: '=' },
+	bindings: { question: '<' },
 	templateUrl:  'view/questionAdd.html',
-	conroller: 'questionAdd',
+	controller: 'questionAdd',
 	controllerAs: 'QAdd'
 })
 

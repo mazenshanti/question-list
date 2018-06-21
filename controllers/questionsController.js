@@ -1,19 +1,28 @@
 var questionsController = angular.module('questionsController', []);
 
-questionsController.controller('questionAdd',function(questionsService,$scope){
-  $scope.submit = function(){
-        console.log(QEdit.question);
+questionsController.controller('questionAdd',['questionsService','$scope','$element','$compile',function(questionsService,$scope,$element,$compile){
+  $scope.AddContactTypeControl = function() {
+    var divElement = angular.element(document.querySelector('#contactTypeDiv'));
+    var appendHtml = $compile('<contact-type></contact-type>')($scope);
+    divElement.append(appendHtml);
+  };
 
-    if(QEdit.question !== null){
+  $scope.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
+  $scope.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
+  var QAdd = this;
+  $scope.submit = function(){
+        console.log(QAdd.question);
+
+    if(QAdd.question !== null){
           console.log(1);
       var questions = questionsService.getAllQuestions();
       var temp = {};
-      temp = QEdit.question;
+      temp = QAdd.question;
       questions.push(temp);
       questionsService.putAllQuestions(questions);
     }
   };
-});
+}]);
 
 questionsController.controller('questionDelete',function(questionsService,$stateParams){
     questionsService.deleteQuestion($stateParams.questionId);
@@ -22,7 +31,7 @@ questionsController.controller('questionDelete',function(questionsService,$state
 
 });
 
-questionsController.controller('questionEdit',function(questionsService,$scope,$stateParams,$element,$compile){
+questionsController.controller('questionEdit',['questionsService','$scope','$stateParams','$element','$compile',function(questionsService,$scope,$stateParams,$element,$compile){
   $scope.AddContactTypeControl = function() {
     var divElement = angular.element(document.querySelector('#contactTypeDiv'));
     var appendHtml = $compile('<contact-type></contact-type>')($scope);
@@ -30,10 +39,7 @@ questionsController.controller('questionEdit',function(questionsService,$scope,$
   }
   $scope.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
   $scope.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
-  $scope.choice = "false";
-  if($scope.answerTypeOptions == "Multiple Choice - Single Choice"){
-    $scope.choice = "true";
-  }
+
   var QEdit = this;
   function questionId(question) {
     return question.id === $stateParams.questionId;
@@ -47,7 +53,7 @@ questionsController.controller('questionEdit',function(questionsService,$scope,$
       questionsService.putAllQuestions(questions);
     }
   };
-});
+}]);
 
 // questionsController.controller('questionDelete',function(questionsService,$scope){
 //   $scope.delete = function(){
@@ -60,7 +66,7 @@ questionsController.controller('questionEdit',function(questionsService,$scope,$
 
 
 
-questionsController.directive('contactType', function($compile, $rootScope, $templateRequest, $sce) {
+questionsController.directive('contactType',['$compile', '$templateRequest', '$sce',function($compile, $templateRequest, $sce) {
   return {
     restrict: "E",
     scope: {},
@@ -78,16 +84,14 @@ questionsController.directive('contactType', function($compile, $rootScope, $tem
 
 
     },
-    controller: function($rootScope, $scope, $element) {
+    controller: function($scope, $element) {
       $scope.Delete = function() {
-        //remove element and also destoy the scope that element
         $element.remove();
         $scope.$destroy();
-        //$rootScope.controlCount--;
       }
     }
   }
-});
+}]);
 
 
 // questionsController.controller('MainCtrl',function MainCtrl($scope) {
