@@ -23,37 +23,40 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="row editLabel marginBottom">Question Type</div> 
-				  <div class="dropdown col-md-12 boarder marginBottom">
-					<select class="dropdown-content col-md-10" ng-model="QEdit.question.questionType" ng-options="x for x in questionTypeOptions">
+				  <div class="noPadding col-md-12 boarder marginBottom">
+					<select class="dropdown col-md-12" ng-model="QEdit.question.questionType" ng-options="x for x in questionTypeOptions">
 					</select>
-			       <i class="fa fa-caret-down col-md-2"></i>
-				  </div> 
+<!-- 			       <i class="fa fa-caret-down col-md-2"></i>
+ -->				  </div> 
 			</div>
 
 			<div class="col-md-6">
 				<div class="row editLabel marginBottom">Answer Type</div> 
-				  <div class="dropdown col-md-12 boarder marginBottom">
-					<select class="dropdown-content col-md-10" ng-model="QEdit.question.answerType" ng-options="x for x in answerTypeOptions">
+				  <div class="noPadding col-md-12 boarder marginBottom">
+					<select class="dropdown col-md-12" ng-model="QEdit.question.answerType" ng-options="x for x in answerTypeOptions">
 					</select>
-			       <i class="fa fa-caret-down col-md-2"></i>
-				  </div> 
+<!-- 			       <i class="fa fa-caret-down col-md-2"></i>
+ -->				  </div> 
 			</div>
 		</div>
 
 		<div ng-show="QEdit.question.answerType == 'Multiple Choice - Single Choice'">
 			<div class="row editLabel marginBottom">Answers</div> 
 			<contact-type></contact-type>
+<!-- 			<contact-type></contact-type>
 			<div ng-app="editQuestion" ng-controller="MainCtrl">
                 <div class="row" id="space-for-buttons"></div>
                 <addbuttonsbutton class="row"></addbuttonsbutton>
-            </div>
+            </div> -->
+            <div id="contactTypeDiv"></div>            	
+            <a href='' ng-click="AddContactTypeControl()" class="row">+ Add Option</a>
 		</div>
 
 		<div class="row">
 			<button type="button" class="col-md-2 col-md-offset-5 button" ng-click="submit()">save</button>
 		</div>
-
 	</form>
 </div>
 </div>
 </div>
+
