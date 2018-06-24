@@ -1,16 +1,23 @@
-var questionsController = angular.module('questionsController', []);
+var questionsController = angular.module('questionsController', ['ngAnimate', 'ngSanitize', 'mgcrea.ngStrap']);
 
 questionsController.controller('questionAdd',['questionsService','$scope','$element','$compile',function(questionsService,$scope,$element,$compile){
   var QAdd = this;
 
-  $scope.AddContactTypeControl = function() {
-    var divElement = angular.element(document.querySelector('#contactTypeDiv'));
-    var appendHtml = $compile('<contact-type></contact-type>')($scope);
-    divElement.append(appendHtml);
+  $scope.modal = {
+    "title": "Remove This Question",
+    "content": "Are you sure ?"
   };
 
+  $scope.AddContactTypeControl = function() {
+    var divElement = angular.element(document.querySelector('#contactTypeDiv'));
+    var appendHtml = $compile('<div class="noPadding col-md-12 boarder marginBottom item">'+
+            '<span id="handle" class="col-md-1 boardToRight fa fa-arrows-alt"></span>'+
+            '<contact-type></contact-type>')($scope);
+    divElement.append(appendHtml);
+  }
+
   $scope.remove = function(){
-    console.log("removed");
+    QAdd.question = undefined;
   }
 
   $scope.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
@@ -21,6 +28,7 @@ questionsController.controller('questionAdd',['questionsService','$scope','$elem
       var questions = questionsService.getAllQuestions();
       var temp = {};
       temp = QAdd.question;
+      temp.id = Math.random();
       questions.push(temp);
       questionsService.putAllQuestions(questions);
     }
@@ -29,22 +37,16 @@ questionsController.controller('questionAdd',['questionsService','$scope','$elem
 
 questionsController.controller('questionDelete',function(questionsService,$stateParams){
     questionsService.deleteQuestion($stateParams.questionId);
-    console.log(allQuestions);
     $state.go('questionsListView');
 
 });
 
 questionsController.controller('questionEdit',['questionsService','$scope','$stateParams','$element','$compile',function(questionsService,$scope,$stateParams,$element,$compile){
   var QEdit = this;
-  console.log(QEdit.question.answers[0].text);
-  $scope.modal = {
-    "title": "Title",
-    "content": "Hello Modal<br />This is a multiline message!"
-  };
   $scope.AddContactTypeControl = function() {
     var divElement = angular.element(document.querySelector('#contactTypeDiv'));
     var appendHtml = $compile('<div class="noPadding col-md-12 boarder marginBottom item">'+
-            '<span class="col-md-1 boardToRight fa fa-arrows-alt handle"></span>'+
+            '<span id="handle" class="col-md-1 boardToRight fa fa-arrows-alt"></span>'+
             '<contact-type></contact-type>')($scope);
     divElement.append(appendHtml);
   }
@@ -64,16 +66,6 @@ questionsController.controller('questionEdit',['questionsService','$scope','$sta
     }
   };
 }]);
-
-// questionsController.controller('questionDelete',function(questionsService,$scope){
-//   $scope.delete = function(){
-//     console.log($scope.questionId);
-//     questionsService.putAllQuestions(questionsService.deleteQuestion($scope.questionId));
-//   };
-// });
-
-
-
 
 
 questionsController.directive('contactType',['$compile', '$templateRequest', '$sce',function($compile, $templateRequest, $sce) {

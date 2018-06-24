@@ -22,7 +22,7 @@
 			<div class="noPadding questionTextLeft col-md-3">Question Text</div>
 		</div> 
 		<input type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.questionText">
-
+		
 		<div class="row">
 			<div class="col-md-6">
 				<div class="row editLabel marginBottom">Question Type</div> 
@@ -49,7 +49,7 @@
 			<div id="sortable">
 				<div ng-repeat="answer in QEdit.question.answers">
 					<div class="noPadding col-md-12 boarder marginBottom item">
-						<span class="col-md-1 boardToRight fa fa-arrows-alt handle"></span>
+						<span id="handle" class="col-md-1 boardToRight fa fa-arrows-alt"></span>
 						<contact-type answer=answer></contact-type>
 					</div>
 				</div>
@@ -69,14 +69,13 @@
 </div>
 </div>
 
-
-
   <script>
   $( function() {
     $( "#sortable" ).sortable({
     	axis: 'y',
 		tolerance: 'pointer',
-		items: '.item'
+		items: '.item',
+		handle: '#handle'
     });
     $( "#sortable" ).disableSelection();
   } );
