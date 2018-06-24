@@ -8,8 +8,8 @@
 
 	<form aciton="/" id="questionEdit">
 		<div class="row editLabel marginBottom">
-			<div class="noPadding col-md-3">Question Text</div>
-			<a href="" class="noPadding col-md-3 col-md-offset-6">Remove Question</a>
+			<div class="noPadding questionTextLeft col-md-3">Question Text</div>
+			<a href="" ng-click="remove()" class="noPadding questionTextRight col-md-3 col-md-offset-6">Remove Question</a>
 		</div> 
 		<input type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QAdd.question.questionText">
 
@@ -19,8 +19,7 @@
 				  <div class="noPadding col-md-12 boarder marginBottom">
 					<select class="dropdown col-md-12" ng-model="QAdd.question.questionType" ng-options="x for x in questionTypeOptions">
 					</select>
-<!-- 			       <i class="fa fa-caret-down col-md-2"></i>
- -->				  </div> 
+				  </div> 
 			</div>
 
 			<div class="col-md-6">
@@ -28,8 +27,7 @@
 				  <div class="noPadding col-md-12 boarder marginBottom">
 					<select class="dropdown col-md-12" ng-model="QAdd.question.answerType" ng-options="x for x in answerTypeOptions">
 					</select>
-<!-- 			       <i class="fa fa-caret-down col-md-2"></i>
- -->				  </div> 
+				  </div> 
 			</div>
 		</div>
 
@@ -42,7 +40,9 @@
                 <addbuttonsbutton class="row"></addbuttonsbutton>
             </div> -->
             <div id="contactTypeDiv"></div>            	
-            <a href='' ng-click="AddContactTypeControl()" class="row">+ Add Option</a>
+            <div class="row">
+            	<a href='' ng-click="AddContactTypeControl()" class="col-md-3">+ Add Option</a>
+			</div>
 		</div>
 
 		<div class="row">

@@ -112,3 +112,12 @@ option:hover,option:active,option:link,option:focus{outline: 0px none;}
 .dropdown-content a:hover {
     background-color: #ddd;
 }
+
+.questionTextRight {
+	color: red;
+	text-align: right;
+}
+
+.questionTextLeft {
+	color: #1b8ce3;
+}

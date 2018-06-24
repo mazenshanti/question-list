@@ -1,20 +1,23 @@
 var questionsController = angular.module('questionsController', []);
 
 questionsController.controller('questionAdd',['questionsService','$scope','$element','$compile',function(questionsService,$scope,$element,$compile){
+  var QAdd = this;
+
   $scope.AddContactTypeControl = function() {
     var divElement = angular.element(document.querySelector('#contactTypeDiv'));
     var appendHtml = $compile('<contact-type></contact-type>')($scope);
     divElement.append(appendHtml);
   };
 
+  $scope.remove = function(){
+    console.log("removed");
+  }
+
   $scope.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
   $scope.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
-  var QAdd = this;
+  
   $scope.submit = function(){
-        console.log(QAdd.question);
-
     if(QAdd.question !== null){
-          console.log(1);
       var questions = questionsService.getAllQuestions();
       var temp = {};
       temp = QAdd.question;
@@ -32,15 +35,22 @@ questionsController.controller('questionDelete',function(questionsService,$state
 });
 
 questionsController.controller('questionEdit',['questionsService','$scope','$stateParams','$element','$compile',function(questionsService,$scope,$stateParams,$element,$compile){
+  var QEdit = this;
+  console.log(QEdit.question.answers[0].text);
+  $scope.modal = {
+    "title": "Title",
+    "content": "Hello Modal<br />This is a multiline message!"
+  };
   $scope.AddContactTypeControl = function() {
     var divElement = angular.element(document.querySelector('#contactTypeDiv'));
-    var appendHtml = $compile('<contact-type></contact-type>')($scope);
+    var appendHtml = $compile('<div class="noPadding col-md-12 boarder marginBottom item">'+
+            '<span class="col-md-1 boardToRight fa fa-arrows-alt handle"></span>'+
+            '<contact-type></contact-type>')($scope);
     divElement.append(appendHtml);
   }
   $scope.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
   $scope.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
 
-  var QEdit = this;
   function questionId(question) {
     return question.id === $stateParams.questionId;
   }
@@ -69,7 +79,7 @@ questionsController.controller('questionEdit',['questionsService','$scope','$sta
 questionsController.directive('contactType',['$compile', '$templateRequest', '$sce',function($compile, $templateRequest, $sce) {
   return {
     restrict: "E",
-    scope: {},
+    scope: { answer:"="},
     link: function(scope, element, attrs) {
 
       var templateUrl = $sce.getTrustedResourceUrl('view/removeInput.htm');
@@ -86,7 +96,7 @@ questionsController.directive('contactType',['$compile', '$templateRequest', '$s
     },
     controller: function($scope, $element) {
       $scope.Delete = function() {
-        $element.remove();
+        $element.parent().remove();
         $scope.$destroy();
       }
     }

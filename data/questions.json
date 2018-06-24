@@ -4,7 +4,8 @@
     "questionText": "What is your fav color",
     "questionType": "Behavioral",
     "questionTypeNumber": "0",
-    "answerType": "Multiple Choice - Single Choice"
+    "answerType": "Multiple Choice - Single Choice",
+    "answers": [{"text": "yes"}, {"text": "no"}, {"text": "never"}]
   },
   {
     "id": "581",

@@ -8,6 +8,7 @@
 </div>
  -->
 
+
 <div class="container">
 
 <h2 class="col-md-8 col-md-offset-2 banner editBanner">Edit Question</h2>
@@ -17,7 +18,9 @@
 <div class="row marginLeft">
 
 	<form aciton="/" id="questionEdit">
-		<div class="row editLabel marginBottom">Question Text</div> 
+		<div class="row editLabel marginBottom">
+			<div class="noPadding questionTextLeft col-md-3">Question Text</div>
+		</div> 
 		<input type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.questionText">
 
 		<div class="row">
@@ -26,8 +29,7 @@
 				  <div class="noPadding col-md-12 boarder marginBottom">
 					<select class="dropdown col-md-12" ng-model="QEdit.question.questionType" ng-options="x for x in questionTypeOptions">
 					</select>
-<!-- 			       <i class="fa fa-caret-down col-md-2"></i>
- -->				  </div> 
+				  </div> 
 			</div>
 
 			<div class="col-md-6">
@@ -35,28 +37,52 @@
 				  <div class="noPadding col-md-12 boarder marginBottom">
 					<select class="dropdown col-md-12" ng-model="QEdit.question.answerType" ng-options="x for x in answerTypeOptions">
 					</select>
-<!-- 			       <i class="fa fa-caret-down col-md-2"></i>
- -->				  </div> 
+				  </div> 
 			</div>
 		</div>
 
+
+
+
 		<div ng-show="QEdit.question.answerType == 'Multiple Choice - Single Choice'">
 			<div class="row editLabel marginBottom">Answers</div> 
-			<contact-type></contact-type>
-<!-- 			<contact-type></contact-type>
-			<div ng-app="editQuestion" ng-controller="MainCtrl">
-                <div class="row" id="space-for-buttons"></div>
-                <addbuttonsbutton class="row"></addbuttonsbutton>
-            </div> -->
-            <div id="contactTypeDiv"></div>            	
-            <a href='' ng-click="AddContactTypeControl()" class="row">+ Add Option</a>
+			<div id="sortable">
+				<div ng-repeat="answer in QEdit.question.answers">
+					<div class="noPadding col-md-12 boarder marginBottom item">
+						<span class="col-md-1 boardToRight fa fa-arrows-alt handle"></span>
+						<contact-type answer=answer></contact-type>
+					</div>
+				</div>
+				<div id="contactTypeDiv" class="item"></div>            	
+			</div>
+            <div class="row">
+            	<a href='' ng-click="AddContactTypeControl()" class="col-md-3">+ Add Option</a>
+			</div>
 		</div>
 
 		<div class="row">
 			<button type="button" class="col-md-2 col-md-offset-5 button" ng-click="submit()">Save</button>
 		</div>
 	</form>
+
 </div>
 </div>
 </div>
+
+
+
+  <script>
+  $( function() {
+    $( "#sortable" ).sortable({
+    	axis: 'y',
+		tolerance: 'pointer',
+		items: '.item'
+    });
+    $( "#sortable" ).disableSelection();
+  } );
+  </script>
+
+
+
+
 
