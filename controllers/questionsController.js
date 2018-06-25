@@ -1,5 +1,6 @@
 var questionsController = angular.module('questionsController', ['ngAnimate', 'ngSanitize', 'mgcrea.ngStrap']);
 
+
 questionsController.controller('questionAdd',['questionsService','$scope','$element','$compile',function(questionsService,$scope,$element,$compile){
   var QAdd = this;
 
@@ -7,6 +8,14 @@ questionsController.controller('questionAdd',['questionsService','$scope','$elem
     "title": "Remove This Question",
     "content": "Are you sure ?"
   };
+
+  $scope.addQuestion = function(counter) {
+    console.log(counter);
+    counter++;
+    var divElement = angular.element(document.querySelector('#newQuestionDiv'));
+    var appendHtml = $compile('<new-question questionsCounter=counter></new-question>')($scope);
+    divElement.append(appendHtml);
+  }
 
   $scope.AddContactTypeControl = function() {
     var divElement = angular.element(document.querySelector('#contactTypeDiv'));
@@ -95,44 +104,50 @@ questionsController.directive('contactType',['$compile', '$templateRequest', '$s
   }
 }]);
 
-
-// questionsController.controller('MainCtrl',function MainCtrl($scope) {
-//   $scope.count = 0;
-// });
-
-// //Directive that returns an element which adds buttons on click which show an alert on click
-// questionsController.directive("addbuttonsbutton", function(){
-//   return {
-//     restrict: "E",
-//     template: "<a href='' addbuttons>+ Add Option</a>",
-//   }
-// });
-
-// //Directive for adding buttons on click that show an alert on click
-// questionsController.directive("addbuttons", function($compile){
-//   return function(scope, element, attrs){
-//     element.bind("click", function(){
-//       scope.count++;
-//       angular.element(document.getElementById('space-for-buttons')).append($compile('<contact-type></contact-type>')(scope));
-//     });
-//   };
-// });
-
-// questionsController.directive("contactType", function($compile){
-//   return {
-//     templateUrl: 'view/removeInput.htm'
-//   };
-// });
+questionsController.directive('newQuestion',function() {
+  return {
+    restrict: "E",
+    scope: { questionsCounter: '<' },
+    bindings: { questionsCounter: '<' },
+    templateUrl: 'view/newQuestion.html',
+    controller: 'questionAdd',
+  }
+});
 
 
-// questionsController.directive('removeOnClick', function() {
-//     return {
-//         link: function(scope, elt, attrs) {
-//             scope.remove = function() {
-//                 elt.html('');
-//             };
-//         }
-//     }
-// });
 
+
+questionsController.controller('questionsListView',['$scope', 'questionsService', function($scope, questionsService){
+  var QList = this;
+  QList.questions = questionsService.getAllQuestions();
+  $scope.filteredList = [];
+  $scope.currentPage = 1;
+  $scope.numPerPage = 2;
+  $scope.maxSize = 5;
+    
+  $scope.numPages = function () {
+    return Math.ceil(QList.questions.length / $scope.numPerPage);
+  };
+
+  $scope.previous = function () {
+    if($scope.currentPage > 1) {
+      $scope.currentPage--;
+    }
+  }
+  
+  $scope.next = function () {
+    if($scope.currentPage < $scope.numPages()) {
+      $scope.currentPage++;
+    }
+  }
+
+  $scope.questionTypeOptions = ['Behavioral', 'Opnion', 'Welcome & Introduction'];
+
+  $scope.$watch('currentPage + numPerPage', function() {
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage);
+    var end = begin + $scope.numPerPage;
+    $scope.filteredList = QList.questions.slice(begin, end);
+  });
+  console.log($scope.numPages());
+}]);
 

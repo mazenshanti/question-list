@@ -1,5 +1,6 @@
 angular.module('questions').component('questionsListView', {
-	bindings: { questions: '<' },
-	templateUrl:  'view/questionsListView.html'
+	templateUrl:  'view/questionsListView.html',
+	controller: 'questionsListView',
+	controllerAs: 'QList'
 })
 

@@ -46,12 +46,13 @@ a,a:hover,a:active,a.active {
 }
 
 .searchLabel {
-    margin-top: 4px;
-    padding: 4px;
+    padding: 10px;
     border-left: 0.1px solid rgba(221, 221, 221, 0.5);
     background: white;
     color: #3b3b3b;
     font-weight: 600;
+    text-align: right;
+    width: auto;
 }
 
 .marginBottom {
@@ -166,4 +167,32 @@ a,a:hover,a:active,a.active {
   padding: 15px;
   border-right: 0.1px solid rgba(221, 221, 221, 0.5);
   text-align: center;
+}
+
+.pagination span{
+  color: #1b8ce3;
+  font-size: 20px;
+  text-align: center;
+}
+
+.fa-angle-left {
+  padding: 5px;
+}
+
+.fa-angle-right {
+  padding: 5px;
+}
+
+.search_field {
+  margin: 0;
+  padding: 15px;
+}
+
+.questionTextRight {
+  color: red;
+  text-align: right;
+}
+
+.questionTextLeft {
+  color: #1b8ce3;
 }

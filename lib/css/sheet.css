@@ -92,17 +92,15 @@ body{
 .dropdown {
 	border: 0 !important;  
 	-webkit-appearance: none;  
-	-moz-appearance: none; 
+	-moz-appearance: none;
+	content: '\f078'; 
 	text-indent: 0.01px; 
 	text-overflow: "";  
 	text-decoration: none;
 	outline: 0;
-	padding: 0;
+	padding: 10px;
 }
 
-.dropdown option {
-	padding: 15px;
-}
 
 a:hover,a:active,a:link,a:focus{outline: 0px none;}
 select:hover,select:active,select:link,select:focus{outline: 0px none;}
@@ -113,11 +111,18 @@ option:hover,option:active,option:link,option:focus{outline: 0px none;}
     background-color: #ddd;
 }
 
-.questionTextRight {
-	color: red;
-	text-align: right;
-}
 
-.questionTextLeft {
-	color: #1b8ce3;
+.buttonAddQuestion {
+	background-color: #1b8ce3;
+	border:0;
+	border-radius: 3px;
+	color: white;
+	font-size: 11px;
+	font-weight: 400;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	text-align: center;
+	text-decoration: none;
 }

@@ -11,16 +11,10 @@ myApp.config(['$stateProvider',function($stateProvider) {
       name: 'questionsListView', 
       url: '/questionsListView', 
       component: 'questionsListView',
-      resolve: {
-        questions: function(questionsService) {
-          return questionsService.getAllQuestions();
-        }
-      }
     },
     { 
       name: 'reload', 
       url: '/reload', 
-      component: 'questionsListView',
       resolve: {
         questions: function(questionsService) {
           return questionsService.fetchAllQuestions();
@@ -52,7 +46,7 @@ myApp.config(['$stateProvider',function($stateProvider) {
     { 
       name: 'questionAdd', 
       url: '/questionAdd',
-      component: 'questionAdd'
+      component: 'questionAdd',
     },
   ]
   
