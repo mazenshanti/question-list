@@ -1,10 +1,6 @@
 var myApp = angular.module('questions', ['ui.router','questionsController']);
 
-// myApp.config(function($locationProvider) {
-//   $locationProvider.html5Mode(true).hashPrefix('!');
-// });
-
-myApp.config(['$stateProvider',function($stateProvider) {
+myApp.config(['$stateProvider','$locationProvider',function($stateProvider, $locationProvider) {
   // An array of state definitions
   var states = [
     { 
@@ -54,6 +50,9 @@ myApp.config(['$stateProvider',function($stateProvider) {
   states.forEach(function(state) {
     $stateProvider.state(state);
   });
+
+  $locationProvider.html5Mode(true);
+
 }]);
 
 // myApp.run(['$rootScope', '$state', function($rootScope, $state) {

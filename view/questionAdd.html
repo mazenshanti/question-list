@@ -3,7 +3,63 @@
 <h2 class="col-md-2 col-md-offset-2 banner editBanner">Add Question</h2>
 <div class="col-md-8 col-md-offset-2 card editCard">
 
-<new-question></new-question>
+<div ng-repeat="question in QAdd.questions">
+	
+<div class="row marginLeft">
+
+	<form>
+		<div class="row editLabel marginBottom">
+			<div class="noPadding questionTextLeft col-md-3">Question {{questionsCounter}}</div>
+			<a href="" class="questionTextRight col-md-3 col-md-offset-6" ng-click="remove($index)" >Remove Question</a>
+<!-- 			data-animation="am-fade-and-scale" data-placement="center" bs-modal="modal"
+ -->		</div> 
+		<input type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QAdd.questions[$index].questionText">
+
+		<div class="row">		
+			<div class="col-md-6">
+				<div class="row editLabel marginBottom">Question Type</div> 
+				  <div class="noPadding col-md-12 boarder marginBottom">
+					<select class="dropdown col-md-12" ng-model="QAdd.questions[$index].questionType" ng-options="x for x in questionTypeOptions">
+					</select>
+				  </div> 
+			</div>
+
+			<div class="col-md-6">
+				<div class="row editLabel marginBottom">Answer Type</div> 
+				  <div class="noPadding col-md-12 boarder marginBottom">
+					<select class="dropdown col-md-12" ng-model="QAdd.questions[$index].answerType" ng-options="x for x in answerTypeOptions">
+					</select>
+				  </div> 
+			</div>
+		</div>
+
+		<div ng-show="QAdd.questions[$index].answerType == 'Multiple Choice - Single Choice'">
+			<div class="row editLabel marginBottom">Answers</div> 
+			<div class="sortable">
+				<div ng-repeat="answer in QAdd.questions[$index].answers">
+					<div class="noPadding col-md-12 boarder marginBottom item" style="">
+						<span id="handle" class="col-md-1 boardToRight fa fa-arrows-alt"></span>
+						<input id="{{answer.id}}" type="text" class="search_text col-md-10" ng-model="answer.text">
+						<span ng-click="Delete($index)" class="col-md-1 boardToLeft fa fa-times"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+            	<a href='' ng-click="addAnswer($index)" class="col-md-3">+ Add Option</a>
+			</div>
+		</div>
+	</form>
+</div>
+            <div class="row">
+				<hr class="noPadding col-md-5">
+				<a href="" class="col-md-2 buttonAddQuestion" ng-click="addQuestion()">Add Question</a>
+				<hr class="noPadding col-md-5">
+			</div>
+</div>
+
+<div class="row">
+	<button type="button" class="col-md-1 col-md-offset-10 button" ng-click="submit()">Save</button>
+</div>
 
 </div>
 </div>

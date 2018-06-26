@@ -44,17 +44,17 @@
 
 		<div ng-show="QEdit.question.answerType == 'Multiple Choice - Single Choice'">
 			<div class="row editLabel marginBottom">Answers</div> 
-			<div id="sortable">
+			<div class="sortable">
 				<div ng-repeat="answer in QEdit.question.answers">
-					<div class="noPadding col-md-12 boarder marginBottom item">
+					<div class="noPadding col-md-12 boarder marginBottom item" style="">
 						<span id="handle" class="col-md-1 boardToRight fa fa-arrows-alt"></span>
-						<contact-type answer=answer></contact-type>
+						<input id="{{answer.id}}" type="text" class="search_text col-md-10" ng-model="answer.text">
+						<span ng-click="Delete($index)" class="col-md-1 boardToLeft fa fa-times"></span>
 					</div>
 				</div>
-				<div id="contactTypeDiv" class="item"></div>            	
 			</div>
             <div class="row">
-            	<a href='' ng-click="AddContactTypeControl()" class="col-md-3">+ Add Option</a>
+            	<a href='' ng-click="addAnswer()" class="col-md-3">+ Add Option</a>
 			</div>
 		</div>
 
@@ -66,20 +66,4 @@
 </div>
 </div>
 </div>
-
-  <script>
-  $( function() {
-    $( "#sortable" ).sortable({
-    	axis: 'y',
-		tolerance: 'pointer',
-		items: '.item',
-		handle: '#handle'
-    });
-    $( "#sortable" ).disableSelection();
-  } );
-  </script>
-
-
-
-
 

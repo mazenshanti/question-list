@@ -3,36 +3,44 @@
     "id": "293",
     "questionText": "What is your fav color",
     "questionType": "Behavioral",
-    "questionTypeNumber": "0",
     "answerType": "Multiple Choice - Single Choice",
-    "answers": [{"text": "yes"}, {"text": "no"}, {"text": "never"}]
+    "answers":  [
+                  {
+                    "text": "yes",
+                    "id": "0"
+                  }, 
+                  {
+                    "text": "no",
+                    "id": "1"
+                  },
+                  {
+                    "text": "never",
+                    "id": "2"
+                  }
+                ]
   },
   {
     "id": "581",
     "questionText": "What is the steps",
     "questionType": "Opnion",
-    "questionTypeNumber": "1",
     "answerType": "Free Text"
   },
   {
     "id": "29",
     "questionText": "false",
     "questionType": "brown",
-    "questionTypeNumber": "2",
     "answerType": "Ingrid Townsend"
   },
   {
     "id": "856",
     "questionText": "false",
     "questionType": "brown",
-    "questionTypeNumber": "2",
     "answerType": "Ingrid Townsend"
   },
   {
     "id": "2321",
     "questionText": "How to be",
     "questionType": "Welcome & Introduction",
-    "questionTypeNumber": "3",
     "answerType": "Free Text"
   }
 ]
