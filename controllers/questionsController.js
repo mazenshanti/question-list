@@ -1,11 +1,11 @@
-var questionsController = angular.module('questionsController', ['ngAnimate', 'ngSanitize', 'mgcrea.ngStrap']);
+var questionsController = angular.module('questionsController', []);
 
 
-questionsController.controller('questionAdd',['questionsService','$scope','$element','$compile',function(questionsService,$scope,$element,$compile){
+questionsController.controller('questionAdd',['questionsService','$element','$compile',function(questionsService,$element,$compile){
   var QAdd = this;
   var counter = 0;
   var counterRemove = 0;
-  $scope.modal = {
+  QAdd.modal = {
     "title": "Remove This Question",
     "content": "Are you sure ?"
   };
@@ -21,9 +21,8 @@ questionsController.controller('questionAdd',['questionsService','$scope','$elem
   counterRemove++;
   QAdd.questions = [];
   QAdd.questions.push(temp);
-  console.log(QAdd.questions);
 
-  $scope.addAnswer = function(index) {
+  QAdd.addAnswer = function(index) {
     if (!QAdd.questions[index].answers) {
       QAdd.questions[index].answers = [];
     }
@@ -33,7 +32,7 @@ questionsController.controller('questionAdd',['questionsService','$scope','$elem
     QAdd.questions[index].answers.push(temp);
   };
 
-  $scope.Delete = function(index) {
+  QAdd.Delete = function(index) {
     if(QEdit.question.answers && index){
       var answers = QEdit.question.answers;
       answers.splice(index,1);
@@ -48,7 +47,7 @@ questionsController.controller('questionAdd',['questionsService','$scope','$elem
   //   divElement.append(appendHtml);
   // }
 
-  $scope.addQuestion = function() {
+  QAdd.addQuestion = function() {
     var temp = {
       "id": "",
       "questionText": "",
@@ -58,10 +57,9 @@ questionsController.controller('questionAdd',['questionsService','$scope','$elem
     temp.id = counter;
     counter++;
     QAdd.questions.push(temp);
-    console.log(QAdd.questions);
   };
 
-  $scope.remove = function(index){
+  QAdd.remove = function(index){
     if(QAdd.questions && index){
       if(counterRemove > 1){
         counterRemove--;
@@ -73,10 +71,10 @@ questionsController.controller('questionAdd',['questionsService','$scope','$elem
     }
   }
 
-  $scope.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
-  $scope.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
+  QAdd.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
+  QAdd.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
   
-  $scope.submit = function(){
+  QAdd.submit = function(){
     if(QAdd.questions !== null){
       var questions = questionsService.getAllQuestions();
       var temp = {};
@@ -84,7 +82,6 @@ questionsController.controller('questionAdd',['questionsService','$scope','$elem
         temp.id = ""+Math.floor(Math.random() * 1000);
         questions.push(temp);
       });
-      console.log(questions);
       questionsService.putAllQuestions(questions);
     }
   };
@@ -94,9 +91,8 @@ questionsController.controller('questionDelete',function(questionsService,$state
     questionsService.deleteQuestion($stateParams.questionId);
 });
 
-questionsController.controller('questionEdit',['questionsService','$scope','$stateParams','$element','$compile',function(questionsService,$scope,$stateParams,$element,$compile){
+questionsController.controller('questionEdit',['questionsService','$stateParams','$element','$compile',function(questionsService,$stateParams,$element,$compile){
   var QEdit = this;
-  console.log(QEdit.question);
   if(QEdit.question){
     var counter = 0;
 
@@ -125,8 +121,8 @@ questionsController.controller('questionEdit',['questionsService','$scope','$sta
 
     sortable();
 
-    $scope.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
-    $scope.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
+    QEdit.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
+    QEdit.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
 
     // $scope.AddContactTypeControl = function() {
     //   var divElement = angular.element(document.querySelector('#contactTypeDiv'));
@@ -141,7 +137,7 @@ questionsController.controller('questionEdit',['questionsService','$scope','$sta
     }
 
 
-    $scope.submit = function(){
+    QEdit.submit = function(){
       var questions = questionsService.getAllQuestions();
       var index = questions.findIndex(questionId);
       questions.splice(index,1);
@@ -158,7 +154,7 @@ questionsController.controller('questionEdit',['questionsService','$scope','$sta
       questionsService.putAllQuestions(questions);
     };
 
-    $scope.addAnswer = function() {
+    QEdit.addAnswer = function() {
       if (!QEdit.question.answers) {
         QEdit.question.answers = [];
       }
@@ -168,7 +164,7 @@ questionsController.controller('questionEdit',['questionsService','$scope','$sta
       QEdit.question.answers.push(temp);
     };
 
-    $scope.Delete = function(index) {
+    QEdit.Delete = function(index) {
       if(QEdit.question.answers && index){
         var answers = QEdit.question.answers;
         answers.splice(index,1);
@@ -211,34 +207,65 @@ questionsController.directive('newQuestion',function() {
 questionsController.controller('questionsListView',['$scope', 'questionsService', function($scope, questionsService){
   var QList = this;
   QList.questions = questionsService.getAllQuestions();
-  $scope.filteredList = [];
-  $scope.currentPage = 1;
-  $scope.numPerPage = 2;
-  $scope.maxSize = 5;
+  QList.filteredList = [];
+  QList.currentPage = 1;
+  QList.numPerPage = 2;
+  QList.maxSize = 5;
     
-  $scope.numPages = function () {
-    return Math.ceil(QList.questions.length / $scope.numPerPage);
+  QList.numPages = function () {
+    return Math.ceil(QList.questions.length / QList.numPerPage);
   };
 
-  $scope.previous = function () {
-    if($scope.currentPage > 1) {
-      $scope.currentPage--;
+  QList.previous = function () {
+    if(QList.currentPage > 1) {
+      QList.currentPage--;
     }
   }
   
-  $scope.next = function () {
-    if($scope.currentPage < $scope.numPages()) {
-      $scope.currentPage++;
+  QList.next = function () {
+    if(QList.currentPage < QList.numPages()) {
+      QList.currentPage++;
     }
   }
 
-  $scope.questionTypeOptions = ['Behavioral', 'Opnion', 'Welcome & Introduction'];
+  QList.questionTypeOptions = ['Behavioral', 'Opnion', 'Welcome & Introduction'];
 
   $scope.$watch('currentPage + numPerPage', function() {
-    var begin = (($scope.currentPage - 1) * $scope.numPerPage);
-    var end = begin + $scope.numPerPage;
-    $scope.filteredList = QList.questions.slice(begin, end);
+    var begin = ((QList.currentPage - 1) * QList.numPerPage);
+    var end = begin + QList.numPerPage;
+    QList.filteredList = QList.questions.slice(begin, end);
   });
-  console.log($scope.numPages());
 }]);
 
+
+// questionsController.directive('nothing', function(){
+//   function linkfn(scope, element, attrs){
+//     var animateDown, animateRight, pageOne, pageTwo;
+
+//     pageOne = angular.element(element.children());
+//     console.log(element[0].childNodes[1].childNodes[1]);
+//     $('#sort').draggable();
+
+    // animateDown = function() {
+    //     $(this).animate({
+    //         top: '+=50'
+    //     });
+    // };
+
+    // animateRight = function() {
+    //     $(this).animate({
+    //         left: '+=50'
+    //     });
+    // };
+
+    // $('#sort').on('click', animateDown);
+    // $(pageTwo).on('click', animateRight);
+    // element.bind('click', function(){
+    //       console.log(pageOne);
+    // });
+//   }
+//   return {
+//     restrict: 'EA',
+//     link: linkfn
+//   };
+// });

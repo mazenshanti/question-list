@@ -10,27 +10,22 @@
 	<div class="row marginBottom boarder">
 		<input type="text" class="search_text col-md-7"  placeholder="Search" ng-model="searchText" />
 		<span class="col-md-3 searchLabel">Question Type</span>
-		<select class="dropdown col-md-2" ng-model="searchType" ng-options="x for x in questionTypeOptions">
+		<select class="dropdown col-md-2" ng-model="searchType" ng-options="x for x in QList.questionTypeOptions">
 			<option value=""  selected>All Types</option>
 		</select>
-		<!-- <select class="dropdown col-md-2" ng-model="QTypeFilter">
-			<div ng-repeat="x in questionTypeOptions">
-				<option value="{{x}}">{{x}}</option>
-			</div>
-		</select> -->
 	</div>
 	<h4 class="row title">{{QList.questions[0].questionType}}</h4>
 
-	<div class="row marginBottom boarder" ng-repeat="question in filteredList | filter:(!!searchType || undefined) && {questionType: searchType} | filter:(!!searchText || undefined) && {questionText: searchText}">
+	<div class="row marginBottom boarder" ng-repeat="question in QList.filteredList | filter:(!!searchType || undefined) && {questionType: searchType} | filter:(!!searchText || undefined) && {questionText: searchText}">
 	  <input disabled="disabled" class="search_text col-md-10" type="text" value="{{question.questionText}}">
 		  <button class="col-md-1 boardToLeft fa fa-pencil-alt" ui-sref="questionEdit({ questionId: question.id })"></button>
 		  <button class="col-md-1 boardToLeft fa fa-times" ui-sref="questionDelete({ questionId: question.id })"></button>
 	</div>
 	<div class="row" ng-hide="searchText || searchType">
 		<div class="pagination noPadding col-md-4 col-md-offset-5">
-			<span href="" class="noPadding fa fa-angle-left col-md-2" ng-click="previous()"></span>
-			<span class="noPadding col-md-2">{{currentPage}}/{{numPages()}}</span>
-			<span href="" class="noPadding fa fa-angle-right col-md-2" ng-click="next()"></span>
+			<span href="" class="noPadding fa fa-angle-left col-md-2" ng-click="QList.previous()"></span>
+			<span class="noPadding col-md-2">{{QList.currentPage}}/{{QList.numPages()}}</span>
+			<span href="" class="noPadding fa fa-angle-right col-md-2" ng-click="QList.next()"></span>
 		</div>
 	</div>
 </div>

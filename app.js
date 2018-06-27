@@ -1,8 +1,9 @@
 var myApp = angular.module('questions', ['ui.router','questionsController']);
 
-myApp.config(['$stateProvider','$locationProvider',function($stateProvider, $locationProvider) {
-  // An array of state definitions
-  var states = [
+myApp.config(function($stateProvider, $locationProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/");
+    $urlMatcherFactoryProvider.caseInsensitive(true);  
+    var states = [
     { 
       name: 'questionsListView', 
       url: '/questionsListView', 
@@ -53,7 +54,7 @@ myApp.config(['$stateProvider','$locationProvider',function($stateProvider, $loc
 
   $locationProvider.html5Mode(true);
 
-}]);
+});
 
 // myApp.run(['$rootScope', '$state', function($rootScope, $state) {
 
