@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
 
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="lib/js/angular.js"></script>
     <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
-
-<!--     <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/libs.min.css">
-    <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/docs.min.css"> -->
-    <script src="//cdn.jsdelivr.net/angularjs/1.5.5/angular-animate.min.js" data-semver="1.5.5"></script>
-    <script src="//cdn.jsdelivr.net/angularjs/1.5.5/angular-sanitize.min.js" data-semver="1.5.5"></script>
-    <script src="//mgcrea.github.io/angular-strap/dist/angular-strap.js" data-semver="v2.3.8"></script>
-    <script src="//mgcrea.github.io/angular-strap/dist/angular-strap.tpl.js" data-semver="v2.3.8"></script>
-    <script src="//mgcrea.github.io/angular-strap/docs/angular-strap.docs.tpl.js" data-semver="v2.3.8"></script>
-    
 
     <!--  Scrpits Code -->
     <script src="app.js"></script>
@@ -29,7 +20,7 @@
     <script src="components/questionAdd.js"></script>
     <script src="services/questionsService.js"></script>
     <script src="components/questionsListView.js"></script>
-    
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="lib/css/bootstrap.css">
     <link rel="stylesheet" src="lib/css/bootstrap-theme.css">
@@ -43,35 +34,36 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
 
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<base href="/question-list/" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <base href="/question-list/"/>
 
-  </head>
-  
-  <body ng-app="questions">
+</head>
 
-    <div class="container removePaddings">
-      <ul class="mainNav row">
-          <li class='col-md-1'><a href=''>HOME</a></li>
-          <li class='col-md-1'><a href=''>PEOPLE</a></li>
-          <li class='col-md-1'><a href=''>TALENT POOL</a></li>
-          <li class='col-md-1'><a href=''>MY DOCS</a></li>
-          <li class='col-md-1'><a href=''><span class="fa fa-envelope"></span></a></li>
-          <li class='col-md-1'><a href=''>MENU <span class="fa fa-list-ul"></a></li>
-      </ul>
+<body ng-app="questions">
 
-      <div class="nav row">
-          <a ui-sref="reload">..</a>
-          <a class="col-md-1 itemNav" ui-sref="questionsListView" ui-sref-active="active">Questions List</a>
-          <a class="col-md-1 itemNav" href=''><span></span>Templates</a>
-          <a class="col-md-1 col-md-offset-5 button" ui-sref="questionAdd">Add New</a>
-      </div>
+<div class="container removePaddings">
+    <ul class="mainNav row">
+        <li class='col-md-1'><a href=''>HOME</a></li>
+        <li class='col-md-1'><a href=''>PEOPLE</a></li>
+        <li class='col-md-1'><a href=''>TALENT POOL</a></li>
+        <li class='col-md-1'><a href=''>MY DOCS</a></li>
+        <li class='col-md-1'><a href=''><span class="fa fa-envelope"></span></a></li>
+        <li class='col-md-1'><a href=''>MENU <span class="fa fa-list-ul"></a></li>
+    </ul>
+
+    <div class="nav row">
+        <a ui-sref="reload">..</a>
+        <a class="col-md-1 itemNav" ui-sref="questionsListView" ui-sref-active="active">Questions List</a>
+        <a class="col-md-1 itemNav" href=''><span></span>Templates</a>
+        <a class="col-md-1 col-md-offset-5 button" ui-sref="questionAdd">Add New</a>
     </div>
+</div>
 
-    <ui-view></ui-view>
+<ui-view></ui-view>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  </body> 
+</body>
 </html>
 

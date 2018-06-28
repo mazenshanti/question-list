@@ -11,59 +11,62 @@
 
 <div class="container">
 
-<h2 class="col-md-8 col-md-offset-2 banner editBanner">Edit Question</h2>
-<div class="col-md-8 col-md-offset-2 card editCard">
+    <h2 class="col-md-8 col-md-offset-2 banner editBanner">Edit Question</h2>
+    <div class="col-md-8 col-md-offset-2 card editCard">
 
 
-<div class="row marginLeft">
+        <div class="row marginLeft">
 
-	<form aciton="/" id="questionEdit">
-		<div class="row editLabel marginBottom">
-			<div class="noPadding questionTextLeft col-md-3">Question Text</div>
-		</div> 
-		<input type="text" class="search_text col-md-12 boarder marginBottom" ng-model="QEdit.question.questionText">
-		
-		<div class="row">
-			<div class="col-md-6">
-				<div class="row editLabel marginBottom">Question Type</div> 
-				  <div class="noPadding col-md-12 boarder marginBottom">
-					<select class="dropdown col-md-12" ng-model="QEdit.question.questionType" ng-options="x for x in QEdit.questionTypeOptions">
-					</select>
-				  </div> 
-			</div>
+            <form aciton="/" id="questionEdit">
+                <div class="row editLabel marginBottom">
+                    <div class="noPadding questionTextLeft col-md-3">Question Text</div>
+                </div>
+                <input type="text" class="search_text col-md-12 boarder marginBottom"
+                       ng-model="QEdit.question.questionText">
 
-			<div class="col-md-6">
-				<div class="row editLabel marginBottom">Answer Type</div> 
-				  <div class="noPadding col-md-12 boarder marginBottom">
-					<select class="dropdown col-md-12" ng-model="QEdit.question.answerType" ng-options="x for x in QEdit.answerTypeOptions">
-					</select>
-				  </div> 
-			</div>
-		</div>
-		<a href="" ng-click="print()">doNothing</a>
-		<div id="0"></div>
-		<div ng-show="QEdit.question.answerType == 'Multiple Choice - Single Choice'">
-			<div class="row editLabel marginBottom">Answers</div> 
-			<div id="sortable" nothing>
-				<div ng-repeat="answer in QEdit.question.answers">
-					<div id="{{answer}}" class="noPadding col-md-12 boarder marginBottom item" style="">
-						<span id="handle" class="col-md-1 boardToRight fa fa-arrows-alt"></span>
-						<input type="text" class="search_text col-md-10" ng-model="answer.text">
-						<span ng-click="QEdit.Delete($index)" class="col-md-1 boardToLeft fa fa-times"></span>
-					</div>
-				</div>
-			</div>
-            <div class="row">
-            	<a href='' ng-click="QEdit.addAnswer()" class="col-md-3">+ Add Option</a>
-			</div>
-		</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row editLabel marginBottom">Question Type</div>
+                        <div class="noPadding col-md-12 boarder marginBottom">
+                            <select class="dropdown col-md-12" ng-model="QEdit.question.questionType"
+                                    ng-options="x for x in QEdit.questionTypeOptions">
+                            </select>
+                        </div>
+                    </div>
 
-		<div class="row">
-			<button type="button" class="col-md-2 col-md-offset-5 button" ng-click="QEdit.submit()">Save</button>
-		</div>
-	</form>
+                    <div class="col-md-6">
+                        <div class="row editLabel marginBottom">Answer Type</div>
+                        <div class="noPadding col-md-12 boarder marginBottom">
+                            <select class="dropdown col-md-12" ng-model="QEdit.question.answerType"
+                                    ng-options="x for x in QEdit.answerTypeOptions">
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
-</div>
-</div>
+                <div ng-show="QEdit.question.answerType == 'Multiple Choice - Single Choice'">
+                    <div class="row editLabel marginBottom">Answers</div>
+                    <div id="sortable">
+                        <div ng-repeat="answer in QEdit.question.answers">
+                            <div id="{{answer}}" class="noPadding col-md-12 boarder marginBottom item" style="">
+                                <span id="handle" class="col-md-1 boardToRight fa fa-arrows-alt"></span>
+                                <input type="text" class="search_text col-md-10" ng-model="answer.text">
+                                <span ng-click="QEdit.Delete($index)" class="col-md-1 boardToLeft fa fa-times"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a href='' ng-click="QEdit.addAnswer()" class="col-md-3">+ Add Option</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="col-md-2 col-md-offset-5 button" ng-click="QEdit.submit()">Save
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
 </div>
 
