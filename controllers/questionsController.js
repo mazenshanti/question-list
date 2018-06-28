@@ -255,8 +255,7 @@ questionsController.controller('questionsListView', ['$scope', 'questionsService
 
     QList.questionTypeOptions = ['Behavioral', 'Opnion', 'Welcome & Introduction'];
 
-    $scope.$watch('currentPage + numPerPage', function () {
-        console.log(QList.filteredList);
+    $scope.$watch('QList.currentPage + QList.numPerPage', function () {
         var begin = ((QList.currentPage - 1) * QList.numPerPage);
         var end = begin + QList.numPerPage;
         QList.filteredList = QList.questions.slice(begin, end);
