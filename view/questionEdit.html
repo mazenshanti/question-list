@@ -40,15 +40,15 @@
 				  </div> 
 			</div>
 		</div>
-
-
+		<a href="" ng-click="print()">doNothing</a>
+		<div id="0"></div>
 		<div ng-show="QEdit.question.answerType == 'Multiple Choice - Single Choice'">
 			<div class="row editLabel marginBottom">Answers</div> 
-			<div class="sort">
+			<div id="sortable" nothing>
 				<div ng-repeat="answer in QEdit.question.answers">
-					<div class="noPadding col-md-12 boarder marginBottom item" style="">
+					<div id="{{answer}}" class="noPadding col-md-12 boarder marginBottom item" style="">
 						<span id="handle" class="col-md-1 boardToRight fa fa-arrows-alt"></span>
-						<input id="{{answer.id}}" type="text" class="search_text col-md-10" ng-model="answer.text">
+						<input type="text" class="search_text col-md-10" ng-model="answer.text">
 						<span ng-click="QEdit.Delete($index)" class="col-md-1 boardToLeft fa fa-times"></span>
 					</div>
 				</div>

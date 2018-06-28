@@ -91,7 +91,7 @@ questionsController.controller('questionDelete',function(questionsService,$state
     questionsService.deleteQuestion($stateParams.questionId);
 });
 
-questionsController.controller('questionEdit',['questionsService','$stateParams','$element','$compile',function(questionsService,$stateParams,$element,$compile){
+questionsController.controller('questionEdit',['questionsService','$stateParams','$element','$compile','$scope',function(questionsService,$stateParams,$element,$compile,$scope){
   var QEdit = this;
   if(QEdit.question){
     var counter = 0;
@@ -103,23 +103,33 @@ questionsController.controller('questionEdit',['questionsService','$stateParams'
       }
     }
 
-    if(QEdit.question.answers){
+    if (QEdit.question.answers){
       addID();
-    }
-
+    //
     function sortable(){
-      var elem = angular.element( document.querySelector( ".sortable" ) );
-      var sortedIDs = elem.sortable({
-        axis: 'y',
-        tolerance: 'pointer',
-        items: '.item',
-        handle: '#handle',
-        // containment: 'parent'
-      });
-      elem.disableSelection();
+        $('#sortable').sortable({
+            axis: 'y',
+            tolerance: 'pointer',
+            items: '.item',
+            handle: '#handle',
+            // containment: 'parent',
+            update: function() {
+                $scope.sortedAnswers = $(this).sortable('toArray');
+                // counter = 0;
+                // $(this).find( "div.item" ).each(function() {
+                //     this.ngModel = counter;
+                //     // $(this).attr('style','position: static; top: 0px; left: 0px;');
+                //     counter++;
+                // });
+                console.log($scope.sortedAnswers);
+            },
+            create: function() {
+                $scope.sortedAnswers  = $(this).sortable('toArray');
+            }
+        });
     }
-
     sortable();
+    }
 
     QEdit.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
     QEdit.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];
@@ -138,20 +148,36 @@ questionsController.controller('questionEdit',['questionsService','$stateParams'
 
 
     QEdit.submit = function(){
-      var questions = questionsService.getAllQuestions();
-      var index = questions.findIndex(questionId);
-      questions.splice(index,1);
-      answers = QEdit.question.answers;
-      answers.forEach(function (answer, i) {
+        var questions = questionsService.getAllQuestions();
+        var index = questions.findIndex(questionId);
+        questions.splice(index,1);
+        $scope.sortedAnswers.forEach(function (value, i) {
+            $scope.sortedAnswers[i] = angular.fromJson(value);
+        });
+        console.log( $scope.sortedAnswers);
+        QEdit.question.answers =  $scope.sortedAnswers;
+        var answers = QEdit.question.answers;
+        // $scope.sortedAnswers.forEach(function (value, i) {
+        //     answers.forEach(function (answer, j) {
+        //         if (value == answer.id) {
+        //             answer.id = i;
+        //         }
+        //     });
+        // });
+        //
+        // answers.sort(function(a, b) {
+        //     return a.id - b.id;
+        // });
+        console.log(answers);
+
+        answers.forEach(function (answer, i) {
         if (answer.text == "") {
           answers.splice(i,1);
         }
-      });
-      // answers.sort(function(a, b) {
-      //     return a.id - b.id;
-      // });
-      questions.push(QEdit.question);
-      questionsService.putAllQuestions(questions);
+        });
+
+        questions.push(QEdit.question);
+        questionsService.putAllQuestions(questions);
     };
 
     QEdit.addAnswer = function() {
@@ -211,7 +237,7 @@ questionsController.controller('questionsListView',['$scope', 'questionsService'
   QList.currentPage = 1;
   QList.numPerPage = 2;
   QList.maxSize = 5;
-    
+
   QList.numPages = function () {
     return Math.ceil(QList.questions.length / QList.numPerPage);
   };
@@ -221,7 +247,7 @@ questionsController.controller('questionsListView',['$scope', 'questionsService'
       QList.currentPage--;
     }
   }
-  
+
   QList.next = function () {
     if(QList.currentPage < QList.numPages()) {
       QList.currentPage++;
@@ -238,34 +264,20 @@ questionsController.controller('questionsListView',['$scope', 'questionsService'
 }]);
 
 
-// questionsController.directive('nothing', function(){
-//   function linkfn(scope, element, attrs){
-//     var animateDown, animateRight, pageOne, pageTwo;
+questionsController.directive('nothing', function(){
+    function linkfn(scope, element, attrs){
 
-//     pageOne = angular.element(element.children());
-//     console.log(element[0].childNodes[1].childNodes[1]);
-//     $('#sort').draggable();
-
-    // animateDown = function() {
-    //     $(this).animate({
-    //         top: '+=50'
-    //     });
-    // };
-
-    // animateRight = function() {
-    //     $(this).animate({
-    //         left: '+=50'
-    //     });
-    // };
-
-    // $('#sort').on('click', animateDown);
-    // $(pageTwo).on('click', animateRight);
-    // element.bind('click', function(){
-    //       console.log(pageOne);
-    // });
-//   }
-//   return {
-//     restrict: 'EA',
-//     link: linkfn
-//   };
-// });
+        console.log(scope.sortedAnswers);
+        // scope.$watch(
+        // function () { return $('#sortable').find( "div.item" )[0].id },
+        // function (newValue, oldValue) {
+        //     if (newValue !== oldValue) {
+        //         console.log('nothing');
+        //     }
+        // });
+    }
+  return {
+    restrict: 'EA',
+    link: linkfn
+  };
+});
