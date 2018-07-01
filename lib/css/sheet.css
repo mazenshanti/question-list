@@ -17,20 +17,38 @@ body{
 	z-index: 2000;
 }
 
+/*.navbar-fixed-top {padding-left:0;padding-right:0}*/
+/*.navbar-fixed-top{max-height:340px}*/
+/*@media (max-device-width:480px) and (orientation:landscape){.navbar-fixed-top {max-height:200px}}*/
+/*.navbar-fixed-top{position:fixed;right:0;left:0;z-index:1030}*/
+/*@media (min-width:768px){.navbar-fixed-top{border-radius:0}}*/
+/*.navbar-fixed-top{top:0;border-width:0 0 1px}*/
+
+/*.navbar-static-top {padding-left:0;padding-right:0}*/
+/*.navbar-static-top{max-height:340px}*/
+/*@media (max-device-width:480px) and (orientation:landscape){.navbar-static-top {max-height:200px}}*/
+/*.navbar-static-top{position:fixed;right:0;left:0;z-index:1000;}*/
+/*@media (min-width:768px){.navbar-static-top{border-radius:0}}*/
+/*.navbar-static-top{top:0;border-width:0 0 1px}*/
+
 .mainNav {
 	background-color: #1b8ce3;
-	list-style: none;
-	margin: 0;
-	padding: 25px 2% 25px 63%;
+    margin: 0;
+    padding: 25px 0 25px 0;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     border-bottom: 2px solid rgba(255, 255, 255, 0.5);
     width: 100%;
-	position: fixed;
+    position: fixed;
     z-index: 1000;
 }
+.mainNavButtons {
+	width: auto;
+	padding: 0;
+}
 
-.mainNav > li {
+.mainNavButtons > li {
 	display: inline-block;
+	list-style: none;
 	padding: 0;
 	text-align: center;
 	width: auto;
@@ -39,7 +57,7 @@ body{
 }
 
 
-.mainNav > li > a {
+.mainNavButtons > li > a {
 	color: #cde6f8;
 	font-weight:600;
 	font-size: 13px;
@@ -47,18 +65,21 @@ body{
 	text-decoration: none;
 }
 
+
 .nav {
 	background-color: #ffffff;
-	height: auto;
+	/*height: auto;*/
 	list-style: none;
 	margin: 0;
-	margin-top: 70px;
-	padding: 0;
+	padding: 5px;
+	/*padding-bottom: 3px;*/
 	padding-left: 4%;
 	padding-right: 4%;
     box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
     width: 100%;
-	position: fixed;
+    position: fixed;
+	/*top:11%;*/
+	margin-top: 72px;
 }
 
 .card {
@@ -91,15 +112,20 @@ body{
 
 
 .dropdown {
-	border: 0 !important;  
-	-webkit-appearance: none;  
-	-moz-appearance: none;
+	/*border: 0 !important;*/
+	/*-webkit-appearance: none;*/
+	/*-moz-appearance: none;*/
+	display: inline-block;
+	border: 0;
 	content: '\f078'; 
 	text-indent: 0.01px; 
 	text-overflow: "";  
 	text-decoration: none;
 	outline: 0;
+	background-color: transparent;
 	padding: 10px;
+	width: 100%;
+
 }
 
 

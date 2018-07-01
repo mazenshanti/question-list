@@ -43,20 +43,22 @@
 <body ng-app="questions">
 
 <div class="container removePaddings">
-    <ul class="mainNav row">
-        <li class='col-md-1'><a href=''>HOME</a></li>
-        <li class='col-md-1'><a href=''>PEOPLE</a></li>
-        <li class='col-md-1'><a href=''>TALENT POOL</a></li>
-        <li class='col-md-1'><a href=''>MY DOCS</a></li>
-        <li class='col-md-1'><a href=''><span class="fa fa-envelope"></span></a></li>
-        <li class='col-md-1'><a href=''>MENU <span class="fa fa-list-ul"></a></li>
-    </ul>
+    <div class="mainNav row ">
+        <div class="mainNavButtons col-sm-6 col-md-offset-6 col-md-6 col-lg-offset-7 col-lg-5">
+                <li class='col-md-1'><a href=''>HOME</a></li>
+                <li class='col-md-1'><a href=''>PEOPLE</a></li>
+                <li class='col-md-1'><a href=''>TALENT POOL</a></li>
+                <li class='col-md-1'><a href=''>MY DOCS</a></li>
+                <li class='col-md-1'><a href=''><span class="fa fa-envelope"></span></a></li>
+                <li class='col-md-1'><a href=''>MENU <span class="fa fa-list-ul"></a></li>
+        </div>
+    </div>
 
     <div class="nav row">
-        <a ui-sref="reload">..</a>
-        <a class="col-md-1 itemNav" ui-sref="questionsListView" ui-sref-active="active">Questions List</a>
-        <a class="col-md-1 itemNav" href=''><span></span>Templates</a>
-        <a class="col-md-1 col-md-offset-5 button" ui-sref="questionAdd">Add New</a>
+            <a ui-sref="reload">..</a>
+            <a class="col-md-1 itemNav" ui-sref="questionsListView" ui-sref-active="active">Questions List</a>
+            <a class="col-md-1 itemNav" href=''>Templates</a>
+            <a class="col-md-1 col-md-offset-5 button" ui-sref="questionAdd">Add New</a>
     </div>
 </div>
 
