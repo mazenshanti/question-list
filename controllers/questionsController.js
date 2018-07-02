@@ -1,7 +1,7 @@
-var questionsController = angular.module('questionsController', []);
+var questionsController = angular.module('questionsController', ['ngAnimate', 'ngSanitize','mgcrea.ngStrap']);
 
 
-questionsController.controller('questionAdd', ['questionsService', function (questionsService) {
+questionsController.controller('questionAdd', ['questionsService','$modal', function (questionsService, $modal) {
     var QAdd = this;
     var counter = 0;
     var counterRemove = 0;
@@ -69,7 +69,17 @@ questionsController.controller('questionAdd', ['questionsService', function (que
             var questions = QAdd.questions;
             questions.splice(index, 1);
         }
+        QAdd.hide = true;
     };
+
+    QAdd.hideButton = function () {
+        QAdd.hide = true;
+    };
+
+    QAdd.showButton = function () {
+        QAdd.hide = false;
+    };
+
 
     QAdd.questionTypeOptions = ["Behavioral", "Opnion", "Welcome & Introduction"];
     QAdd.answerTypeOptions = ["Multiple Choice - Single Choice", "Free Text"];

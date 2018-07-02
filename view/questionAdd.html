@@ -10,9 +10,9 @@
 	<form>
 		<div class="row editLabel marginBottom">
 			<div class="marginBottom noPadding questionTextLeft col-md-3 col-sm-3 col-xs-3">Question {{$index+1}}</div>
-			<a href="" class="questionTextRight col-md-3 col-md-offset-6 col-sm-3 col-sm-offset-6  col-xs-3 col-xs-offset-6" ng-click="QAdd.remove($index)" >Remove Question</a>
-<!-- 			data-animation="am-fade-and-scale" data-placement="center" bs-modal="QAdd.modal"
- -->		</div>
+			<a href="" class="questionTextRight col-md-3 col-md-offset-6 col-sm-3 col-sm-offset-6  col-xs-3 col-xs-offset-6"
+			    data-animation="am-fade-and-slide-top" data-template-url="modal/modal.html" bs-modal="modal" ng-click="QAdd.showButton()">Remove Question</a>
+		</div>
 		<div class="boarder col-xs-12 marginBottom" ><input type="text" class="search_text" ng-model="QAdd.questions[$index].questionText"></div>
 
 		<div class="row">
