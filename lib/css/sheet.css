@@ -34,7 +34,7 @@ body{
 .mainNav {
 	background-color: #1b8ce3;
     margin: 0;
-    padding: 25px 0 25px 0;
+    padding: 20px 0 20px 0;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     border-bottom: 2px solid rgba(255, 255, 255, 0.5);
     width: 100%;
@@ -49,7 +49,7 @@ body{
 .mainNavButtons > li {
 	display: inline-block;
 	list-style: none;
-	padding: 0;
+	padding: 5px;
 	text-align: center;
 	width: auto;
 	padding-right: 12px;
@@ -79,7 +79,7 @@ body{
     width: 100%;
     position: fixed;
 	/*top:11%;*/
-	margin-top: 72px;
+	margin-top: 75px;
 }
 
 .card {

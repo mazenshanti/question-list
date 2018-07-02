@@ -22,6 +22,22 @@ a, a:hover, a:active, a.active {
     color: #3b3b3b;
 }
 
+.logo {
+    background-image: url("../harri.png");
+    width: 90px;
+    height: 34px;
+    padding: 0;
+    display: block;
+    background-size: cover;
+    margin-right: 4px;
+    margin-top: 0;
+    opacity: .95;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
 .text_area {
     border: 0;
     background: white;
