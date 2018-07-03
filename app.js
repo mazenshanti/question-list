@@ -1,3 +1,5 @@
+"use strict";
+
 var myApp = angular.module('questions', ['ui.router', 'questionsController']);
 
 myApp.config(function ($stateProvider, $locationProvider, $urlMatcherFactoryProvider, $urlRouterProvider) {
@@ -45,7 +47,7 @@ myApp.config(function ($stateProvider, $locationProvider, $urlMatcherFactoryProv
             url: '/questionAdd',
             component: 'questionAdd',
         },
-    ]
+    ];
 
     // Loop over the state definitions and register them
     states.forEach(function (state) {
