@@ -224,25 +224,29 @@ questionsController.controller('questionsListView', ['$scope', 'questionsService
         return Math.ceil(QList.questions.length / QList.numPerPage);
     };
 
+    function refresh(){
+        let begin = ((QList.currentPage - 1) * QList.numPerPage);
+        let end = begin + QList.numPerPage;
+        QList.filteredList = QList.questions.slice(begin, end);
+    }
+
     QList.previous = function () {
         if (QList.currentPage > 1) {
             QList.currentPage--;
         }
+        refresh();
     };
 
     QList.next = function () {
         if (QList.currentPage < QList.numPages()) {
             QList.currentPage++;
         }
+        refresh();
     };
 
-    QList.questionTypeOptions = ['Behavioral', 'Opnion', 'Welcome & Introduction'];
+    refresh();
 
-    $scope.$watch('QList.currentPage + QList.numPerPage', function () {
-        let begin = ((QList.currentPage - 1) * QList.numPerPage);
-        let end = begin + QList.numPerPage;
-        QList.filteredList = QList.questions.slice(begin, end);
-    });
+    QList.questionTypeOptions = ['Behavioral', 'Opnion', 'Welcome & Introduction'];
 }]);
 
 

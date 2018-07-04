@@ -22,7 +22,7 @@ myApp.config(function ($stateProvider, $locationProvider, $urlMatcherFactoryProv
         },
         {
             name: 'questionEdit',
-            url: '/questionEdit/{questionId}',
+            url: '/questionEdit/{questionId:[0-9]+}',
             component: 'questionEdit',
             resolve: {
                 question: function (questionsService, $stateParams) {
@@ -34,7 +34,7 @@ myApp.config(function ($stateProvider, $locationProvider, $urlMatcherFactoryProv
         },
         {
             name: 'questionDelete',
-            url: '/questionDelete/{questionId}',
+            url: '/questionDelete/{questionId:[0-9]+}',
             component: 'questionsListView',
             resolve: {
                 questions: function (questionsService, $stateParams) {
