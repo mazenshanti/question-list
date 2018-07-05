@@ -11,7 +11,8 @@ questionsController.controller('questionAdd', ['questionsService', function (que
         "id": "",
         "questionText": "",
         "questionType": "",
-        "answerType": ""
+        "answerType": "",
+        "answers" : []
     };
     temp.id = counter;
     counter++;
@@ -19,21 +20,14 @@ questionsController.controller('questionAdd', ['questionsService', function (que
     QAdd.questions = [];
     QAdd.questions.push(temp);
 
-    QAdd.addAnswer = function (index) {
-        if (!QAdd.questions[index].answers) {
-            QAdd.questions[index].answers = [];
-        }
+    QAdd.addAnswer = function (Qindex) {
         let temp = {text: "", id: ""};
-        temp.id = counter;
-        counter++;
-        QAdd.questions[index].answers.push(temp);
+        temp.id = QAdd.questions[Qindex].answers.length;
+        QAdd.questions[Qindex].answers.push(temp);
     };
 
-    QAdd.Delete = function (index) {
-        if (QEdit.question.answers && index) {
-            let answers = QEdit.question.answers;
-            answers.splice(index, 1);
-        }
+    QAdd.Delete = function (Qindex, index) {
+        QAdd.questions[Qindex].answers.splice(index, 1);
     };
 
     QAdd.addQuestion = function () {
@@ -45,16 +39,14 @@ questionsController.controller('questionAdd', ['questionsService', function (que
         };
         temp.id = counter;
         counter++;
+        counterRemove++;
         QAdd.questions.push(temp);
     };
 
     QAdd.remove = function (index) {
-        if (QAdd.questions && index) {
-            if (counterRemove > 1) {
-                counterRemove--;
-            } else {
-                QAdd.questions[index] = undefined;
-            }
+        console.log(counterRemove);
+        if (counterRemove > 1) {
+            counterRemove--;
             let questions = QAdd.questions;
             questions.splice(index, 1);
         }
@@ -173,9 +165,8 @@ questionsController.controller('questionEdit', ['questionsService', '$stateParam
         }
         if (QEdit.question.answers.length < 1 && QEdit.question.answerType === "Multiple Choice - Single Choice"){
             QEdit.showButton();
-            QEdit.question.answerType = "";
+            QEdit.addAnswer();
         }else{
-            console.log("false");
             let questions = questionsService.getAllQuestions();
             let index = questions.findIndex(questionId);
             questions[index] = QEdit.question;
@@ -195,9 +186,7 @@ questionsController.controller('questionEdit', ['questionsService', '$stateParam
     };
 
     QEdit.Delete = function (index) {
-        if (QEdit.question.answers && index) {
-            QEdit.question.answers.splice(index, 1);
-        }
+        QEdit.question.answers.splice(index, 1);
     };
 }]);
 
